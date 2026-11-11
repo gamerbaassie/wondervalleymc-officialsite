@@ -1,388 +1,1141 @@
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WonderValleyMC | Het Magische Minecraft Pretpark</title>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>WonderValleyMC | Het Magische Minecraft Pretpark</title>
-
-    <meta name="description" content="Welkom bij WonderValleyMC! Een magisch Minecraft pretpark vol achtbanen, attracties, shows en avontuur.">
-
-    <link rel="icon" href="favicon.png">
-
-    <link rel="stylesheet" href="style.css">
-
-    <script src="script.js" defer></script>
-
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{--acc:#ffd54d;--glow:255,193,7;--btn1:#ffe27a;--btn2:#ffb300}
+body{font-family:Arial,Helvetica,sans-serif;color:#fff;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column;background:radial-gradient(circle at top,#6b4d00 0%,#171717 40%,#080808 100%) fixed}
+body[data-t=gold2]{background:radial-gradient(circle at 50% 0%,rgba(255,193,7,.24),transparent 34%),linear-gradient(145deg,#211407,#0d0a07 55%,#050505) fixed}
+body[data-t=gray]{background:linear-gradient(135deg,#171717,#050505) fixed}
+body[data-t=blue]{--acc:#62ddff;--glow:0,190,255;--btn1:#7fe6ff;--btn2:#00a8d8;background:radial-gradient(circle at 50% 0%,rgba(0,190,255,.22),transparent 34%),linear-gradient(145deg,#0b1e29,#071016 55%,#03070a) fixed}
+body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.14;background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:48px 48px}
+.hidden{display:none!important}
+header.nav{position:sticky;top:0;z-index:50;background:rgba(8,8,8,.92);backdrop-filter:blur(10px);border-bottom:2px solid rgba(255,215,0,.35)}
+.nav-in{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:10px 18px}
+.brand{color:#ffd54d;font-weight:800;font-size:20px;text-decoration:none;text-shadow:0 0 10px gold}
+.menu{list-style:none;display:flex;gap:4px;align-items:center}
+.menu>li{position:relative}
+.menu a,.menu .t{display:block;padding:9px 14px;border-radius:30px;color:#eee;text-decoration:none;font:700 15px Arial;background:none;border:0;cursor:pointer}
+.menu a:hover,.menu .t:hover,.menu a.on{background:rgba(255,215,0,.15);color:#ffd54d}
+.dd{display:none;position:absolute;left:0;top:100%;min-width:220px;padding:8px;background:#141414;border:1px solid rgba(255,215,0,.3);border-radius:16px;box-shadow:0 15px 40px #000a}
+.menu>li:hover .dd,.menu>li.open .dd{display:block}
+.dd h4{margin:8px 12px 2px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#999}
+.burger{display:none;background:rgba(255,215,0,.15);color:#ffd54d;border:1px solid rgba(255,215,0,.3);border-radius:10px;padding:8px 12px;font-size:18px;cursor:pointer}
+.hero{display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 20px 40px}
+.hero.big{min-height:80vh}
+.hero-content{width:min(950px,100%)}
+.hero-logo{width:min(380px,80vw);height:auto;display:block;margin:0 auto 26px;filter:drop-shadow(0 0 20px var(--acc)) drop-shadow(0 0 40px orange);animation:fl 5s ease-in-out infinite}
+.hero-logo.sm{width:min(260px,70vw)}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.hero h1{font-size:clamp(34px,6vw,64px);color:var(--acc);margin-bottom:20px;text-shadow:0 0 10px var(--acc),0 0 30px rgba(var(--glow),.6)}
+.hero h1 span{color:#fff}
+.hero p{max-width:760px;margin:auto;font-size:clamp(16px,2.2vw,21px);line-height:1.8;color:#ddd}
+.icon-big{font-size:70px}
+.buttons{margin-top:38px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 28px;border-radius:50px;border:0;cursor:pointer;background:linear-gradient(var(--btn1),var(--btn2));color:#111;font:800 16px Arial;text-decoration:none;transition:.3s;box-shadow:0 8px 24px rgba(var(--glow),.18)}
+.btn:hover:not(:disabled){transform:translateY(-4px);box-shadow:0 0 25px var(--acc),0 0 40px orange}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.btn.sec{background:rgba(255,255,255,.06);color:var(--acc);border:1px solid rgba(255,215,0,.3);box-shadow:none}
+main{flex:1}
+.sec-pad{padding:70px 20px;text-align:center}
+.container{width:min(1150px,92%);margin:auto}
+h2.h{font-size:clamp(28px,5vw,42px);color:var(--acc);margin-bottom:36px;text-shadow:0 0 15px rgba(var(--glow),.5)}
+.intro{max-width:780px;margin:0 auto 40px;text-align:center;color:#aaa;line-height:1.75}
+.glass{background:rgba(255,255,255,.065);border:1px solid rgba(255,215,0,.25);border-radius:25px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 16px 50px rgba(0,0,0,.3)}
+body[data-t=blue] .glass{border-color:rgba(72,218,255,.32)}
+.status-box{max-width:750px;margin:auto;padding:38px}
+#serverIcon{display:none;width:90px;height:90px;border-radius:15px;margin:0 auto 20px;box-shadow:0 0 20px rgba(255,215,0,.5)}
+#serverStatus{font-size:clamp(22px,4vw,30px);font-weight:700}
+#playerCount,#serverVersion,#serverMotd{margin-top:12px;color:#ddd;line-height:1.6}
+.note{margin-top:18px;color:#999;font-size:13px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;max-width:1300px;margin:auto}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:25px;padding-bottom:80px}
+.grid1{display:grid;gap:25px;padding-bottom:80px}
+.card{position:relative;overflow:hidden;padding:32px;text-align:left;transition:.3s}
+.card:hover{transform:translateY(-8px);border-color:rgba(255,215,0,.55);box-shadow:0 20px 55px rgba(0,0,0,.4),0 0 30px rgba(var(--glow),.18)}
+.card:after{content:"";position:absolute;width:190px;height:190px;right:-95px;top:-95px;border-radius:50%;background:rgba(var(--glow),.08)}
+.card .ic{font-size:52px;margin-bottom:16px}
+.card h2,.card h3{color:var(--acc);font-size:clamp(22px,3.5vw,32px);margin-bottom:12px}
+.card p{color:#d2d2d2;line-height:1.75}
+.pill{display:inline-flex;gap:8px;margin-top:20px;padding:10px 15px;border-radius:30px;background:rgba(var(--glow),.12);border:1px solid rgba(var(--glow),.35);color:#ffe59a;font-size:14px;font-weight:700}
+body[data-t=blue] .pill{color:#b9efff}
+.pill.soon{color:#bfe9ff;background:rgba(30,150,220,.13);border-color:rgba(70,190,255,.3)}
+.badge{display:inline-block;margin:0 0 12px;padding:7px 14px;border-radius:999px;font-size:13px;font-weight:700;text-transform:uppercase;background:rgba(255,170,0,.14);border:1px solid rgba(255,190,0,.4);color:#ffc94d}
+.avail{display:inline-block;margin-top:14px;padding:9px 14px;border-radius:30px;font-size:13px;font-weight:700}
+.avail.open{background:#163b20;color:#bfffc7}
+.avail.mt{background:#493514;color:#ffe2a0}
+.okbox{max-width:850px;margin:0 auto 40px;padding:20px 25px;text-align:center;border-radius:18px;background:rgba(50,200,100,.1);border:1px solid rgba(80,220,120,.35)}
+.okbox strong{display:block;font-size:20px;color:#7dff9b;margin-bottom:6px}
+.okbox span{color:#d2d2d2}
+.rules{max-width:1000px;margin:auto;padding:20px 20px 70px}
+.rules .card{margin-bottom:24px;text-align:left}
+.rules ul{list-style:none;display:grid;gap:10px;margin-top:16px}
+.rules li{background:rgba(0,0,0,.2);border-radius:10px;padding:12px 15px;color:#eee;line-height:1.55}
+.rules li:before{content:"•";color:#ffd54d;font-size:20px;margin-right:12px}
+.rules .notice{border-color:rgba(255,176,0,.35)}
+.join h3{font-size:clamp(19px,4vw,32px);margin:0 auto 30px;word-break:break-word;color:#fff}
+.news-card{max-width:900px;margin:auto;padding:35px;text-align:left}
+.news-card h3{color:var(--acc);font-size:28px;margin-bottom:15px}
+.news-card p{color:#ddd;line-height:1.8}
+.fcard{width:min(900px,calc(100% - 30px));margin:0 auto 60px;padding:35px;text-align:left}
+.progress{display:flex;gap:8px;margin-bottom:28px}
+.ps{height:6px;flex:1;border-radius:999px;background:rgba(255,255,255,.1);transition:.3s}
+.ps.on{background:linear-gradient(90deg,#ffe27a,#ffb300);box-shadow:0 0 10px rgba(255,179,0,.4)}
+.st{font-size:clamp(22px,4vw,30px);color:var(--acc);margin-bottom:8px}
+.sst{color:#aaa;margin-bottom:26px;line-height:1.6}
+.q{margin-bottom:22px}
+.q>label{display:block;font-weight:700;margin-bottom:10px;line-height:1.5;color:#eee}
+input,textarea{width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,215,0,.25);outline:none;background:rgba(0,0,0,.35);color:#fff;font:inherit;transition:.3s}
+input:focus,textarea:focus{border-color:#ffd54d;box-shadow:0 0 15px rgba(255,215,0,.2)}
+textarea{min-height:110px;resize:vertical;line-height:1.6}
+.err{display:none;color:#ff8a80;font-size:13px;margin-top:7px}
+.q.bad .err{display:block}
+.q.bad input,.q.bad textarea{border-color:#ff5252}
+.btns{display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap;margin-top:28px}
+.roles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.ro{position:relative;display:block;padding:16px 18px;border-radius:16px;border:1px solid rgba(255,215,0,.2);background:rgba(0,0,0,.25);cursor:pointer;transition:.25s}
+.ro input{position:absolute;opacity:0;width:1px;height:1px}
+.ro.sel{border-color:#ffd54d;background:rgba(255,215,0,.1);box-shadow:0 0 20px rgba(255,215,0,.2)}
+.ro.sel .rt:after{content:" ✓"}
+.rt{font-weight:800;color:#ffd54d;margin-bottom:5px}
+.rd{color:#bbb;font-size:13px;line-height:1.5}
+.q.bad .roles{outline:1px solid #ff5252;outline-offset:6px;border-radius:16px}
+.hint{color:#aaa;font-weight:400;font-size:13px}
+.rh{margin:32px 0 16px;padding-bottom:8px;color:#ffd54d;font-size:20px;border-bottom:1px solid rgba(255,215,0,.25)}
+.msg{display:none;padding:13px 16px;border-radius:12px;margin-bottom:20px;line-height:1.5}
+.msg.show{display:block}
+.msg.error{background:rgba(255,82,82,.1);border:1px solid rgba(255,82,82,.3);color:#ff9e9e}
+.msg.success{background:rgba(76,217,100,.1);border:1px solid rgba(76,217,100,.3);color:#8ff0a0}
+.login{width:min(500px,calc(100% - 30px));margin:0 auto 80px;padding:35px}
+.login h2{color:#ffd54d;text-align:center;margin-bottom:24px}
+.ig{margin-bottom:17px}
+.ig label{display:block;margin-bottom:8px;color:#ddd;font-size:14px;font-weight:700}
+.lmsg{margin-top:16px;text-align:center;color:#bbb;font-size:14px}
+.staffcard{max-width:600px;margin:0 auto 30px;padding:40px 30px;text-align:center}
+.simg{width:140px;height:140px;margin:0 auto 22px;object-fit:cover;border-radius:50%;border:3px solid #ffd54d;background:#171717;box-shadow:0 0 20px rgba(255,215,0,.45)}
+.sname{color:#ffd54d;font-size:30px;margin-bottom:10px}
+.srole{display:inline-block;padding:8px 17px;margin-bottom:18px;border-radius:30px;color:#111;font-size:14px;font-weight:800;background:linear-gradient(#ffe27a,#ffb300)}
+.sdesc{color:#ccc;line-height:1.7}
+.dash{max-width:1100px;margin:50px auto 80px;padding:0 15px}
+.dash h2{text-align:center;color:#ffd54d;font-size:34px;margin-bottom:8px}
+.dash>p{text-align:center;color:#aaa;margin-bottom:24px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:22px}
+.filter{border:1px solid rgba(255,215,0,.2);background:rgba(255,255,255,.05);color:#ddd;border-radius:999px;padding:9px 16px;font:700 14px Arial;cursor:pointer}
+.filter.on{background:rgba(255,215,0,.18);border-color:#ffd54d;color:#ffd54d}
+.app{padding:24px;margin-bottom:18px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,215,0,.25)}
+.ah{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap}
+.an{font-size:22px;font-weight:800;color:#ffd54d}
+.ad{color:#999;font-size:13px;margin-top:6px}
+.tag{display:inline-block;margin:4px 6px 0 0;padding:4px 11px;border-radius:999px;font-size:12px;font-weight:800;border:1px solid rgba(255,215,0,.35);background:rgba(255,215,0,.12);color:#ffd54d}
+.tag.accepted{background:rgba(76,217,100,.12);border-color:rgba(76,217,100,.35);color:#8ff0a0}
+.tag.rejected{background:rgba(255,82,82,.12);border-color:rgba(255,82,82,.35);color:#ff9e9e}
+.tag.pending{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#ddd}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+.act{border-radius:50px;padding:10px 16px;font:800 14px Arial;cursor:pointer;border:1px solid;background:none}
+.act:disabled{opacity:.6}
+.act.a{border-color:rgba(76,217,100,.4);color:#8ff0a0}
+.act.r{border-color:rgba(251,146,60,.4);color:#fdba74}
+.act.d{border-color:rgba(255,82,82,.4);color:#ff9e9e}
+.act.armed{color:#fff;border-color:transparent}
+.act.a.armed{background:#16a34a}
+.act.r.armed{background:#d97706}
+.act.d.armed{background:#dc2626}
+.as{margin:22px 0 6px;color:#ffd54d;font-weight:800;padding-bottom:6px;border-bottom:1px solid rgba(255,215,0,.2)}
+.ans{border-left:2px solid #ffb300;padding:10px 14px;margin:10px 0;background:rgba(255,215,0,.04);border-radius:0 10px 10px 0}
+.aq{color:#ffd54d;font-size:12px;font-weight:800;margin-bottom:5px}
+.at{color:#ddd;white-space:pre-wrap;line-height:1.6}
+.empty{padding:34px;text-align:center;color:#aaa;background:rgba(255,255,255,.04);border:1px solid rgba(255,215,0,.15);border-radius:20px;line-height:1.7}
+#toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%);z-index:90;max-width:min(560px,92%);box-shadow:0 15px 40px #000a}
+footer{background:#050505;padding:32px 20px;text-align:center;color:#888;line-height:1.8;border-top:1px solid rgba(255,215,0,.12)}
+@media(max-width:860px){
+.burger{display:block}
+.menu{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;background:#101010;padding:10px 16px 16px;border-bottom:2px solid rgba(255,215,0,.35);max-height:78vh;overflow:auto}
+.menu.show{display:flex}
+.dd{display:block;position:static;border:0;background:none;box-shadow:none;padding:0 0 0 12px}
+.menu .t{text-align:left;color:#ffd54d}
+.grid2{grid-template-columns:1fr}
+.roles{grid-template-columns:1fr}
+.fcard{padding:25px 18px}
+.buttons{flex-direction:column;align-items:center}
+.buttons .btn{width:min(350px,92%)}
+.status-box{padding:26px 18px}
+}
+@media(prefers-reduced-motion:reduce){.hero-logo{animation:none}}
+</style>
 </head>
 
-
-<body>
-
-
-<div id="particles"></div>
-
-
-<header>
-
-<nav>
-
-
-<div class="logo">
-
-<a href="index.html">
-
-<img src="logo.png" alt="WonderValleyMC Logo">
-
-</a>
-
-</div>
-
-
-<ul>
-
-<li><a href="index.html">Home</a></li>
-<li><a href="ranks.html">Ranks</a></li>
-<li><a href="staff.html">Staff</a></li>
-<li><a href="regels.html">Regels</a></li>
-<li><a href="nieuws.html">Nieuws</a></li>
-<li><a href="contact.html">Contact</a></li>
-
+<body data-t="gold">
+<header class="nav">
+<div class="nav-in">
+<a class="brand" href="#home">✨ WonderValleyMC</a>
+<button class="burger" id="burger" aria-label="Menu">☰</button>
+<ul class="menu" id="menu">
+<li><a href="#home" data-r="home">Home</a></li>
+<li><a href="#tickets" data-r="tickets">🎫 Tickets</a></li>
+<li><button class="t" type="button">Informatie ▾</button><div class="dd"><a href="#regels" data-r="regels">Regels</a><a href="#media-rank" data-r="media-rank">Media Rank</a></div></li>
+<li><button class="t" type="button">Ontdek ▾</button><div class="dd"><h4>GB’s LivePark</h4><a href="#gb-attracties" data-r="gb-attracties">Attracties</a><a href="#gb-shows" data-r="gb-shows">Shows</a><h4>WonderValleyMC</h4><a href="#wv-attracties" data-r="wv-attracties">Attracties</a><a href="#wv-shows" data-r="wv-shows">Shows</a></div></li>
+<li><button class="t" type="button">Staff ▾</button><div class="dd"><a href="#solliciteren" data-r="solliciteren">Solliciteren</a><a href="#stafflogin" data-r="stafflogin">Stafflogin</a></div></li>
 </ul>
-
-
-</nav>
-
+</div>
 </header>
 
-
-
-<main>
-
-
-
-<section class="hero">
-
-
-<div class="hero-content">
-
-
-<img class="hero-logo" src="logo.png" alt="WonderValleyMC">
-
-
-<h1>
-Welkom bij WonderValleyMC
-</h1>
-
-
-<p>
-
-Ontdek een magisch Minecraft pretpark vol spectaculaire achtbanen,
-unieke attracties en onvergetelijke avonturen!
-
-</p>
-
-
-
-<div class="buttons">
-
-
-<button onclick="copyIP()">
-
-📋 Kopieer Server IP
-
-</button>
-
-
-
-<a class="discord"
-href="https://discord.gg/JOUWLINK"
-target="_blank">
-
-💬 Discord
-
-</a>
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<section class="status">
-
-
-<h2>🎢 Live Parkstatus</h2>
-
-
-<div class="status-box">
-
-
-<div id="serverStatus">
-
-Status laden...
-
-</div>
-
-
-<div id="playerCount"></div>
-
-
-<div id="serverVersion"></div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<section class="features">
-
-
-<h2>✨ Ontdek WonderValley</h2>
-
-
-
-<div class="cards">
-
-
-
-<div class="card">
-
-
-<h3>🎢 Spectaculaire Achtbanen</h3>
-
-
-<p>
-
-Beleef spannende achtbanen,
-van rustige familie-attracties tot extreme ritten vol snelheid.
-
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="card">
-
-
-<h3>🏰 Magische Themagebieden</h3>
-
-
-<p>
-
-Verken verschillende gebieden met hun eigen sfeer,
-verhalen en bijzondere gebouwen.
-
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="card">
-
-
-<h3>🎡 Unieke Attracties</h3>
-
-
-<p>
-
-Geniet van draaimolens, shows,
-minigames en interactieve belevenissen.
-
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="card">
-
-
-<h3>🎆 Dagelijkse Shows & Events</h3>
-
-
-<p>
-
-Er zijn regelmatig evenementen,
-speciale shows en tijdelijke activiteiten.
-
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="card">
-
-
-<h3>🎟️ Tickets & Beloningen</h3>
-
-
-<p>
-
-Verdien beloningen door het park te ontdekken
-en beleef nieuwe avonturen.
-
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="card">
-
-
-<h3>👥 Gezellige Community</h3>
-
-
-<p>
-
-Speel samen met vrienden en ontmoet andere
-pretparkfans in onze community.
-
-</p>
-
-
-</div>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<section class="news">
-
-
-<h2>Laatste Nieuws</h2>
-
-
-
-<div class="news-card">
-
-
-<h3>🚀 WonderValleyMC opent binnenkort!</h3>
-
-
-<p>
-
-Het park wordt momenteel gebouwd.
-Nieuwe attracties, gebieden en verrassingen worden toegevoegd.
-
-Houd Discord en de website in de gaten voor updates!
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<section class="join">
-
-
-<h2>
-
-🎠 Klaar voor jouw avontuur?
-
-</h2>
-
-
-<h3 id="serverip">
-
-wondervalleymc.minecraftserver.nl
-
-</h3>
-
-
-
-<button onclick="copyIP()">
-
-📋 Kopieer Server IP
-
-</button>
-
-
-
-</section>
-
-
-
-
-</main>
-
-
-
-
-
-
+<main id="app"></main>
+<div id="toast" class="msg"></div>
 <footer>
-
-
-<p>
-
-© 2026 WonderValleyMC • Alle rechten voorbehouden.
-
-</p>
-
-
-<p>
-
-WonderValleyMC is geen onderdeel van Mojang AB.
-
-</p>
-
-
+<p id="fp">© 2026 WonderValleyMC • Alle rechten voorbehouden.</p>
+<p>WonderValleyMC is geen onderdeel van Mojang AB.</p>
 </footer>
 
+<!-- Firebase Compat SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+
+<script>
+var SERVER_IP="wondervalleymc.minecraftserver.nl";
+var L1="https://cdn.phototourl.com/member/2026-10-01-a281f208-4e04-4157-a54f-4f6e4971e182.png";
+var L2="https://cdn.phototourl.com/free/2026-09-09-4e0aa8c9-ea39-4645-92de-ee43d2cd078c.png";
+var DISCORD="https://discord.gg/Z3HSWSxz78";
+
+var $=function(s){return document.querySelector(s)};
+var esc=function(v){return String(v==null?"":v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")};
+
+function img(src,cls,alt){
+return '<img class="hero-logo '+(cls||"")+'" src="'+src+'" alt="'+alt+'" onerror="this.style.display=\'none\'">';
+}
+function hero(inner,big){
+return '<header class="hero'+(big?" big":"")+'"><div class="hero-content">'+inner+'</div></header>';
+}
+function card(ic,t,p,extra){
+return '<article class="card glass"><div class="ic">'+ic+'</div>'+
+(extra&&extra.badge?'<span class="badge">'+extra.badge+'</span>':'')+
+'<h2>'+t+'</h2><p>'+p+'</p>'+(extra&&extra.foot||'')+'</article>';
+}
+function page(h,intro,body){
+return hero(h)+'<div class="container">'+
+(intro?'<p class="intro">'+intro+'</p>':'')+(body||'')+'</div>';
+}
+function wvHead(sub){
+return img(L1,"sm","WonderValleyMC logo")+
+'<h1>WonderValleyMC</h1><p>'+sub+'</p>';
+}
+function gbHead(sub){
+return img(L2,"sm","GB’s LivePark logo")+
+'<h1>GB’s <span>LivePark</span></h1><p>'+sub+'</p>';
+}
+var ipBtn='<button type="button" class="btn" data-copy>📋 Kopieer Server IP</button>';
+
+/* STAFFVRAGEN */
+var GI=[
+"Waarom wil je staff worden bij WonderValleyMC?",
+"Waarom denk je dat jij geschikt bent voor de functie(s) die je hebt gekozen?",
+"Heb je eerder ervaring gehad als stafflid, bouwer of technicus op een Minecraft-server? Zo ja, waar?",
+"Wat vind je leuk aan pretparken? Noem je favoriete pretpark of attractie en leg uit waarom.",
+"Wat vind je leuk aan Minecraft en aan pretparkservers zoals WonderValleyMC?",
+"Hoeveel tijd kun je ongeveer per week voor WonderValleyMC vrijmaken?",
+"Op welke momenten ben je meestal online?",
+"Hoe zou je jezelf omschrijven als persoon?"
+];
+
+var GS=[
+"Wat zijn volgens jou de belangrijkste eigenschappen van een goed stafflid in een pretpark?",
+"Hoe ga je om met een bezoeker die de parkregels niet kent?",
+"Wat doe je als een bezoeker je blijft lastigvallen terwijl je hem al hebt gewaarschuwd?",
+"Een vriend van jou overtreedt de regels in het park. Wat doe je?",
+"Wat doe je wanneer twee bezoekers ruzie met elkaar krijgen, bijvoorbeeld bij een attractie?",
+"Hoe reageer je als iemand boos wordt op een beslissing van jou?",
+"Wat doe je als je een fout maakt als stafflid?",
+"Wat betekent eerlijkheid voor jou binnen een staffteam?",
+"Hoe ga je om met iemand die probeert staff tegen elkaar op te zetten?",
+"Wat doe je als je iets niet weet?",
+"Wanneer vind jij een waarschuwing nodig en wanneer een mute of andere straf?",
+"Wat doe je als een bezoeker beweert dat hij onterecht gestraft is?",
+"Hoe reageer je op kritiek van een hoger stafflid, zoals de parkdirecteur of een manager?",
+"Wat doe je als je het niet eens bent met een beslissing van de directie?",
+"Hoe zou jij nieuwe bezoekers welkom heten in het park?",
+"Wat doe je als een nieuwe bezoeker hulp nodig heeft terwijl je zelf bezig bent met een taak?",
+"Hoe ga je om met stress of meerdere meldingen tegelijk, bijvoorbeeld op een drukke dag of tijdens een event?",
+"Wat is volgens jou belangrijker: snel reageren of goed reageren? Leg uit.",
+"Wat doe je als een ander stafflid volgens jou iets verkeerd doet?",
+"Hoe ga je om met vertrouwelijke informatie, zoals geheime plannen voor nieuwe attracties?",
+"Wat doe je als iemand je vraagt om hem een voordeel of speciale behandeling te geven?",
+"Waar ben je zelf minder goed in en welke kwaliteiten wil je verder ontwikkelen?",
+"Wat kunnen wij van jou verwachten als je wordt aangenomen?",
+"Waarom zouden wij jou moeten kiezen boven andere sollicitanten?",
+"Heb je nog iets dat je aan ons wilt vertellen?"
+];
+
+var PORT='Heb je screenshots of een portfolio van eerder werk? Plak hier een link (Imgur, Discord, enzovoort) of schrijf "geen".';
+
+var ROLES={
+techniek:{
+label:"Techniek",emoji:"⚙️",
+desc:"Achtbanen, redstone, commandblocks en plugins achter de attracties.",
+q:[
+"Welke techniek ken je? Denk aan redstone, commandblocks, datapacks, plugins, Skript of resourcepacks. Geef per onderdeel aan hoe goed je het kent.",
+"Hoe zou jij een achtbaan laten rijden in Minecraft (bijvoorbeeld met minecarts, armor stands of plugins)? Welke methodes ken je?",
+"Heb je ervaring met het instellen van plugins of het beheren van een server (bijvoorbeeld LuckPerms, WorldGuard, Citizens)? Leg uit wat je gedaan hebt.",
+"Beschrijf een technisch project dat je zelf hebt gemaakt en hoe je het hebt aangepakt.",
+"Een attractie valt uit of veroorzaakt lag op de server. Hoe ga je stap voor stap op zoek naar de oorzaak?",
+"Hoe zorg je dat attracties veilig en stabiel werken, zonder dat de server er zwaarder van wordt?",
+"Met welke programmeertalen of hulpmiddelen heb je ervaring (bijvoorbeeld Java, Skript, JSON, Python)?"
+]},
+modelaar:{
+label:"Modelaar",emoji:"🎨",
+desc:"Eigen 3D-modellen, textures en resourcepacks maken voor het park.",
+q:[
+"Met welke programma's maak je modellen of textures (bijvoorbeeld Blockbench, Blender, Aseprite, Photoshop) en hoe goed ken je ze?",
+"Hoe krijg je een zelfgemaakt model in Minecraft? Welke methodes ken je (resourcepack, custom model data, ModelEngine, ItemsAdder, Oraxen)?",
+"Beschrijf een model dat je hebt gemaakt, zoals een attractievoertuig, decorstuk of personage, en hoe je het hebt aangepakt.",
+"Hoe zorg je dat modellen er goed uitzien maar weinig lag veroorzaken (bijvoorbeeld aantal elementen en texturegrootte)?",
+"Hoe maak je animaties, zoals bewegende figuren of draaiende onderdelen van een attractie?",
+"Hoe pas je een model aan op het thema van een gebied, zoals kleuren, stijl en sfeer?",
+PORT
+]},
+bouwer:{
+label:"Bouwer",emoji:"🏗️",
+desc:"Attracties, gebouwen en magische themagebieden bouwen.",
+q:[
+"In welke bouwstijlen of thema's ben je het sterkst (bijvoorbeeld sprookjes, fantasie, western, futuristisch)?",
+"Beschrijf een attractie of themagebied dat jij voor WonderValleyMC zou willen bouwen, inclusief thema en verhaal.",
+"Welke bouwtools gebruik je (bijvoorbeeld WorldEdit, VoxelSniper, schematics) en hoe goed ken je ze?",
+"Hoe bouw je organische vormen zoals bomen, rotsen, water en terrein?",
+"Hoe zorg je voor sfeer en detail, zoals verlichting, landschapsbouw en decoratie?",
+"Hoe werk je samen als meerdere bouwers tegelijk aan hetzelfde gebied werken?",
+PORT
+]},
+showtechniek:{
+label:"Show en Techniek",emoji:"🎆",
+desc:"Shows, lichtspelen, geluid en effecten die automatisch en op tijd verlopen.",
+q:[
+"Beschrijf een show die jij voor WonderValleyMC zou maken, bijvoorbeeld een nachtshow, vuurwerk of een waterspel.",
+"Hoe laat je een show automatisch en op de seconde nauwkeurig afspelen (commandblocks, redstone, datapacks, plugins)?",
+"Welke middelen ken je voor effecten, zoals particles, geluid, muziek via een resourcepack, vuurwerk, titles en lichtshows?",
+"Hoe laat je muziek, beweging en effecten precies op elkaar aansluiten?",
+"Hoe test je een show, zodat die op drukke momenten niet faalt of lag veroorzaakt?",
+"Hoe werk je samen met bouwers, modelaars en technici aan een showlocatie?",
+"Een show gaat live fout, bijvoorbeeld de muziek stopt of effecten lopen uit de pas. Wat doe je?"
+]},
+operator:{
+label:"Operator",emoji:"🎢",
+desc:"Attracties bedienen, bezoekers begeleiden en storingen afhandelen.",
+q:[
+"Wat houdt het werk van een operator van een attractie volgens jou in?",
+"Hoe zorg je voor veiligheid en orde bij een attractie, bijvoorbeeld bij het instappen, de wachtrij en een noodstop?",
+"Hoe ga je om met een bezoeker die niet wil wachten of voordringt?",
+"Wat doe je als een attractie vastloopt of uitvalt terwijl er bezoekers in zitten?",
+"Hoe leg je bezoekers duidelijk uit hoe een attractie werkt?",
+"Hoe zorg je dat je betrouwbaar op je post staat en afspraken nakomt, ook op drukke dagen?",
+"Heb je ervaring met het bedienen van attracties via knoppen, borden of commando's in Minecraft? Zo ja, welke?"
+]}
+};
+
+var STAFF=[
+{email:"gamerbaas321+wvmc@gmail.com",name:"GamerBaas321",role:"Algemeen directeur",description:"Algemeen directeur van WonderValleyMC.",image:"https://res.cloudinary.com/dtz0urit6/image/upload/q_auto:best,f_jpg/cloudinary-tools-uploads/f63nxhra9mheykujfooa.jpg"},
+{email:"thijs.deruiter@kpnmail.nl",name:"YT_ToffeTurtle",role:"Parkdirecteur",description:"Parkdirecteur van WonderValleyMC.",image:"https://cdn.phototourl.com/free/2026-09-03-9a137872-1e64-4130-8c33-410ad4a88225.png"},
+{email:"",name:"Dexelotlyt",role:"Manager",description:"Manager van WonderValleyMC.",image:""},
+{email:"",name:"Gummy_bear2015",role:"Bouwer",description:"Bouwer van WonderValleyMC.",image:""},
+{email:"",name:"Floki_mahoon",role:"Bouwer",description:"Bouwer van WonderValleyMC.",image:""}
+];
+
+var TICKET_PAGE="<!DOCTYPE html>\n<html lang=\"nl\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>WonderValleyMC | Tickets</title>\n<style>\n*{box-sizing:border-box;margin:0;padding:0}\n:root{--acc:#ffd54d;--glow:255,193,7}\nbody{font-family:Arial,Helvetica,sans-serif;color:#fff;min-height:100vh;background:radial-gradient(circle at top,#6b4d00 0%,#171717 40%,#080808 100%) fixed;padding:18px 12px 60px}\n.wrap{max-width:900px;margin:auto}\n.tabs{display:flex;gap:8px;justify-content:center;margin-bottom:18px;flex-wrap:wrap}\n.glass{background:rgba(255,255,255,.065);border:1px solid rgba(255,215,0,.25);border-radius:25px;box-shadow:0 16px 50px rgba(0,0,0,.3)}\n#box{padding:30px}\nh2.st{font-size:clamp(22px,4vw,30px);color:var(--acc);margin-bottom:8px;word-break:break-word}\n.sst{color:#aaa;margin-bottom:24px;line-height:1.6}\n.rh{margin:30px 0 14px;padding-bottom:8px;color:var(--acc);font-size:20px;border-bottom:1px solid rgba(255,215,0,.25)}\n.q{margin-bottom:20px}\n.q>label{display:block;font-weight:700;margin-bottom:9px;color:#eee}\ninput,textarea,select{width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,215,0,.25);outline:none;background:rgba(0,0,0,.35);color:#fff;font:inherit}\ninput:focus,textarea:focus,select:focus{border-color:var(--acc)}\nselect option{background:#141414}\ntextarea{min-height:110px;resize:vertical;line-height:1.6}\n.err{display:none;color:#ff8a80;font-size:13px;margin-top:7px}\n.q.bad .err{display:block}\n.q.bad input,.q.bad textarea{border-color:#ff5252}\n.hp{position:absolute;left:-9999px;opacity:0;height:0}\n.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}\n.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 26px;border-radius:50px;border:0;cursor:pointer;background:linear-gradient(#ffe27a,#ffb300);color:#111;font:800 16px Arial;transition:.3s}\n.btn:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 0 22px var(--acc)}\n.btn:disabled{opacity:.6;cursor:not-allowed}\n.btn.sec{background:rgba(255,255,255,.06);color:var(--acc);border:1px solid rgba(255,215,0,.3)}\n.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}\n.filter{border:1px solid rgba(255,215,0,.2);background:rgba(255,255,255,.05);color:#ddd;border-radius:999px;padding:9px 16px;font:700 14px Arial;cursor:pointer}\n.filter.on{background:rgba(255,215,0,.18);border-color:var(--acc);color:var(--acc)}\n.msg{display:none;padding:13px 16px;border-radius:12px;margin-bottom:18px;line-height:1.5}\n.msg.show{display:block}\n.msg.error{background:rgba(255,82,82,.1);border:1px solid rgba(255,82,82,.3);color:#ff9e9e}\n.msg.success{background:rgba(76,217,100,.1);border:1px solid rgba(76,217,100,.3);color:#8ff0a0}\n#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:90;max-width:92%}\n.empty{padding:30px;text-align:center;color:#aaa;background:rgba(255,255,255,.04);border:1px solid rgba(255,215,0,.15);border-radius:20px;line-height:1.7}\n.tag{display:inline-block;margin:4px 6px 0 0;padding:4px 11px;border-radius:999px;font-size:12px;font-weight:800;border:1px solid rgba(255,215,0,.35);background:rgba(255,215,0,.12);color:var(--acc)}\n.tag.accepted{background:rgba(76,217,100,.12);border-color:rgba(76,217,100,.35);color:#8ff0a0}\n.tag.pending{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#ddd}\n.tk{padding:18px;margin-bottom:14px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,215,0,.25)}\n.tk-h{display:flex;justify-content:space-between;gap:12px;align-items:center;cursor:pointer;flex-wrap:wrap}\n.tk-t{font-weight:800;color:var(--acc);font-size:18px;word-break:break-word}\n.tk-m{color:#999;font-size:13px;margin-top:4px;word-break:break-all}\n.thread{display:grid;gap:10px;margin:18px 0}\n.bub{max-width:85%;padding:12px 15px;border-radius:14px;line-height:1.6;white-space:pre-wrap;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);word-break:break-word}\n.bub.staff{justify-self:end;background:rgba(255,215,0,.1);border-color:rgba(255,215,0,.35)}\n.bub small{display:block;color:var(--acc);font-weight:800;margin-bottom:4px;font-size:12px}\n.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}\n.act{border-radius:50px;padding:10px 16px;font:800 14px Arial;cursor:pointer;border:1px solid;background:none}\n.act.a{border-color:rgba(76,217,100,.4);color:#8ff0a0}\n.act.r{border-color:rgba(251,146,60,.4);color:#fdba74}\n.act.d{border-color:rgba(255,82,82,.4);color:#ff9e9e}\n.act.d.armed{background:#dc2626;color:#fff;border-color:transparent}\n.tr{margin-top:6px}\n</style>\n</head>\n<body>\n<div class=\"wrap\">\n<div class=\"tabs\"><button class=\"filter on\" data-tab=\"user\">🎫 Ticket aanmaken</button><button class=\"filter\" data-tab=\"staff\">🔐 Staff</button></div>\n<div id=\"box\" class=\"glass\"></div>\n</div>\n<div id=\"toast\" class=\"msg\"></div>\n\n<script src=\"https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js\"><\/script>\n<script src=\"https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js\"><\/script>\n<script src=\"https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js\"><\/script>\n<script>\nvar $=function(s){return document.querySelector(s)};\nvar esc=function(v){return String(v==null?\"\":v).replace(/&/g,\"&amp;\").replace(/</g,\"&lt;\").replace(/>/g,\"&gt;\").replace(/\"/g,\"&quot;\").replace(/'/g,\"&#039;\")};\nfunction setMsg(el,t,k){el.textContent=t;el.className=\"msg show \"+k}\nfunction clr(el){el.textContent=\"\";el.className=\"msg\"}\nfunction val(id){return document.getElementById(id).value.trim()}\nfunction toast(m,k){var t=$(\"#toast\");setMsg(t,m,k);clearTimeout(t._t);t._t=setTimeout(function(){t.className=\"msg\"},6000)}\nfunction validate(ids){\nvar ok=true;\nids.forEach(function(id){\nvar el=document.getElementById(id),g=!!el.value.trim();\nel.closest(\".q\").classList.toggle(\"bad\",!g);\nif(!g)ok=false;\n});\nreturn ok;\n}\n\n/* STAFFLEDEN (zelfde als op de hoofdsite) */\nvar STAFF=[\n{email:\"gamerbaas321+wvmc@gmail.com\",name:\"GamerBaas321\",role:\"Algemeen directeur\"},\n{email:\"thijs.deruiter@kpnmail.nl\",name:\"YT_ToffeTurtle\",role:\"Parkdirecteur\"},\n{email:\"\",name:\"Dexelotlyt\",role:\"Manager\"}\n];\n\nvar TL={open:\"Open\",doing:\"In behandeling\",closed:\"Gesloten\"},TC={open:\"accepted\",doing:\"\",closed:\"pending\"};\nvar TCAT=[\"Vraag\",\"Storing of bug\",\"Speler melden\",\"Ban-bezwaar\",\"Overig\"];\nvar tab=\"user\",user=null,tUnsub=null,curT=null,curCode=\"\",tSm=null,tickets=[],tFilt=\"all\",tExp={},tDraft={},tArm=\"\",tU=null;\n\nfunction tS(t){return TL[t.status]?t.status:\"open\"}\nfunction tMsgs(t){return Object.values(t.messages||{}).sort(function(a,b){return a.at-b.at})}\nfunction tLast(t){var m=tMsgs(t);return m.length?m[m.length-1].at:(t.createdAt||0)}\nfunction tThread(t){\nreturn '<div class=\"thread\">'+tMsgs(t).map(function(m){\nreturn '<div class=\"bub'+(m.role===\"staff\"?\" staff\":\"\")+'\"><small>'+esc(m.author)+(m.role===\"staff\"?\" · Staff\":\"\")+' · '+new Date(m.at).toLocaleString(\"nl-NL\")+'</small>'+esc(m.text)+'</div>';\n}).join(\"\")+'</div>';\n}\nfunction myT(){try{return JSON.parse(localStorage.getItem(\"wvTickets\")||\"[]\")}catch(e){return[]}}\nfunction saveT(c){try{var a=myT().filter(function(x){return x!==c});a.unshift(c);localStorage.setItem(\"wvTickets\",JSON.stringify(a.slice(0,20)))}catch(e){}}\n\n/* FIREBASE */\nvar FB=null;\nfunction initFirebase(){\ntry{\nif(!firebase.apps.length){\nfirebase.initializeApp({\napiKey:\"AIzaSyBPQPuusDh6eI7swxXyEHlCgVP_KQI9ZsU\",\nauthDomain:\"wondervalleymc.firebaseapp.com\",\ndatabaseURL:\"https://wondervalleymc-default-rtdb.europe-west1.firebasedatabase.app\",\nprojectId:\"wondervalleymc\",\nstorageBucket:\"wondervalleymc.firebasestorage.app\",\nmessagingSenderId:\"177525506386\",\nappId:\"1:177525506386:web:4439f50134e8b64a06ba8b\"\n});\n}\nvar auth=firebase.auth(),db=firebase.database();\nFB={\nlogin:function(e,p){return auth.signInWithEmailAndPassword(e,p)},\nlogout:function(){return auth.signOut()},\nensureVisitorAuth:function(){\nif(auth.currentUser)return Promise.resolve(auth.currentUser);\nreturn auth.signInAnonymously().then(function(result){return result.user});\n},\nnewTicket:function(data){\nvar A=\"ABCDEFGHJKLMNPQRSTUVWXYZ23456789\";\nfunction gen(){var r=new Uint8Array(8);crypto.getRandomValues(r);var s=\"WV-\";for(var i=0;i<8;i++)s+=A[r[i]%32];return s}\nreturn (auth.currentUser?Promise.resolve(auth.currentUser):auth.signInAnonymously().then(function(result){return result.user}))\n.then(function(visitor){\ndata.ownerUid=visitor.uid;\nvar code=gen();\nreturn db.ref(\"tickets/\"+code).set(data).then(function(){return code});\n});\n},\nwatchTicket:function(code,ok,err){var ref=db.ref(\"tickets/\"+code);ref.on(\"value\",function(s){ok(s.val())},err);return function(){ref.off(\"value\")}},\nreply:function(code,msg){return db.ref(\"tickets/\"+code+\"/messages\").push().set(msg)},\nlistenTickets:function(ok,err){var ref=db.ref(\"tickets\");ref.on(\"value\",function(s){ok(s.val()||{})},err);return function(){ref.off(\"value\")}},\nsetStatus:function(code,s){return db.ref(\"tickets/\"+code+\"/status\").set(s)},\ndelTicket:function(code){return db.ref(\"tickets/\"+code).remove()}\n};\nauth.onAuthStateChanged(function(u){\nuser=u;\nif(!u&&tU){tU();tU=null;tickets=[]}\nif(tab===\"staff\")renderStaff();\n});\n}catch(e){console.error(e);FB=null}\nrender();\n}\n\nfunction render(){\nif(tUnsub){tUnsub();tUnsub=null}\nif(tab===\"user\")tHome();else renderStaff();\n}\n\n/* BEZOEKERS */\nfunction tHome(){\nvar my=myT();\n$(\"#box\").innerHTML='<div id=\"tkMsg\" class=\"msg\"></div><h2 class=\"st\">🎫 Nieuw ticket</h2><p class=\"sst\">Stuur een bericht naar het staffteam van WonderValleyMC. Je krijgt een ticketcode waarmee je hier het antwoord terugleest. Bewaar die code goed.</p><form id=\"tkForm\" novalidate>'+\n'<div class=\"q\"><label for=\"tn\">Minecraft naam *</label><input id=\"tn\" maxlength=\"30\" autocomplete=\"off\"><div class=\"err\">Vul je naam in.</div></div>'+\n'<div class=\"q\"><label for=\"tc\">Categorie</label><select id=\"tc\">'+TCAT.map(function(c){return '<option>'+c+'</option>'}).join(\"\")+'</select></div>'+\n'<div class=\"q\"><label for=\"ts\">Onderwerp *</label><input id=\"ts\" maxlength=\"80\" autocomplete=\"off\"><div class=\"err\">Vul een onderwerp in.</div></div>'+\n'<div class=\"q\"><label for=\"tm\">Bericht *</label><textarea id=\"tm\" maxlength=\"2000\"></textarea><div class=\"err\">Typ je bericht.</div></div>'+\n'<input id=\"hp\" class=\"hp\" tabindex=\"-1\" autocomplete=\"off\" aria-hidden=\"true\">'+\n'<div class=\"btns\"><button class=\"btn\" id=\"tkBtn\" type=\"submit\">📨 Ticket versturen</button></div></form>'+\n'<h2 class=\"rh\">Ticket terugvinden</h2><div class=\"q\"><label for=\"tcode\">Ticketcode</label><input id=\"tcode\" placeholder=\"WV-XXXXXXXX\" autocomplete=\"off\"></div><button type=\"button\" class=\"btn sec\" data-look>🔍 Openen</button>'+\n(my.length?'<h3 class=\"rh\">Jouw recente tickets</h3><div class=\"filters\">'+my.map(function(c){return '<button type=\"button\" class=\"filter\" data-open=\"'+esc(c)+'\">'+esc(c)+'</button>'}).join(\"\")+'</div>':'');\n}\n\nasync function tCreate(){\nvar st=$(\"#tkMsg\");\nclr(st);\nif($(\"#hp\").value)return;\nif(!validate([\"tn\",\"ts\",\"tm\"]))return setMsg(st,\"Vul alle velden in.\",\"error\");\nif(!FB)return setMsg(st,\"Firebase kon niet worden geladen.\",\"error\");\nvar last=0;\ntry{last=+localStorage.getItem(\"wvTkLast\")||0}catch(e){}\nif(Date.now()-last<60000)return setMsg(st,\"Wacht even voordat je nog een ticket verstuurt.\",\"error\");\nvar btn=$(\"#tkBtn\"),now=Date.now(),n=val(\"tn\");\nbtn.disabled=true;\ntry{\nvar code=await FB.newTicket({name:n,category:val(\"tc\"),subject:val(\"ts\"),status:\"open\",createdAt:now,messages:{m1:{role:\"user\",author:n,text:val(\"tm\"),at:now}}});\ntry{localStorage.setItem(\"wvTkLast\",String(now))}catch(e){}\nsaveT(code);\ntOpen(code,true);\n}catch(er){\nbtn.disabled=false;\nsetMsg(st,\"Ticket versturen mislukt: \"+(er.code===\"PERMISSION_DENIED\"?\"Firebase weigert de opslag. Publiceer de meegeleverde Realtime Database-regels en schakel Anoniem aanmelden in.\":er.message),\"error\");\n}\n}\n\nfunction tOpen(code,fresh){\nvar b=$(\"#box\");\nif(tUnsub)tUnsub();\ncurCode=code;\nb.innerHTML='<div class=\"empty\">⏳ Ticket laden...</div>';\nif(!FB){b.innerHTML='<div class=\"empty\">Firebase kon niet worden geladen.</div>';return}\nFB.ensureVisitorAuth().then(function(){\ntUnsub=FB.watchTicket(code,function(t){\ncurT=t;\nif(!t){b.innerHTML='<div class=\"empty\">Geen ticket gevonden met code '+esc(code)+'.<br><br><button type=\"button\" class=\"btn sec\" data-tb>← Terug</button></div>';return}\nvar r=document.getElementById(\"rp\"),d=r?r.value:\"\",s=tS(t);\nsaveT(code);\nb.innerHTML=(fresh?'<div class=\"msg show success\">Ticket verstuurd! Bewaar je code: <strong>'+esc(code)+'</strong></div>':'')+\n'<div id=\"tkMsg\" class=\"msg\"></div><h2 class=\"st\">'+esc(t.subject)+'</h2><p class=\"sst\">Code: <strong>'+esc(code)+'</strong> · '+esc(t.category)+' · <span class=\"tag '+TC[s]+'\">'+TL[s]+'</span></p>'+tThread(t)+\n(s===\"closed\"?'<div class=\"empty\">Dit ticket is gesloten. Maak een nieuw ticket aan als je nog hulp nodig hebt.</div>':'<form id=\"rf\" novalidate><div class=\"q\"><label for=\"rp\">Reageren</label><textarea id=\"rp\" maxlength=\"2000\"></textarea><div class=\"err\">Typ een bericht.</div></div><div class=\"btns\"><button class=\"btn\" id=\"rb\" type=\"submit\">📨 Versturen</button></div></form>')+\n'<div class=\"btns\"><button type=\"button\" class=\"btn sec\" data-tb>← Terug</button></div>';\nif(d&&$(\"#rp\"))$(\"#rp\").value=d;\n},function(er){\nb.innerHTML='<div class=\"empty\">Ticket laden mislukt: '+esc(er.message)+'<br><br><button type=\"button\" class=\"btn sec\" data-tb>← Terug</button></div>';\n});\n}).catch(function(er){\nb.innerHTML='<div class=\"empty\">Ticket openen mislukt: '+esc(er.message)+'<br><br>Controleer of anoniem inloggen is ingeschakeld in Firebase.<br><br><button type=\"button\" class=\"btn sec\" data-tb>← Terug</button></div>';\n});\n}\n\nasync function tUserReply(){\nif(!validate([\"rp\"])||!curT)return;\nvar ta=$(\"#rp\"),tx=ta.value.trim(),btn=$(\"#rb\");\nbtn.disabled=true;\nta.value=\"\";\ntry{\nawait FB.reply(curCode,{role:\"user\",author:curT.name,text:tx,at:Date.now()});\n}catch(er){\nta.value=tx;\nbtn.disabled=false;\nsetMsg($(\"#tkMsg\"),\"Versturen mislukt: \"+er.message,\"error\");\n}\n}\n\n/* STAFF */\nfunction renderStaff(){\nvar b=$(\"#box\");\nif(!FB){b.innerHTML='<div class=\"empty\">Firebase kon niet worden geladen. Controleer je internetverbinding.</div>';return}\nif(!user||!user.email){\nb.innerHTML='<h2 class=\"st\">🔐 Staff Login</h2><p class=\"sst\">Alleen voor stafflid-accounts.</p><form id=\"lf\"><div class=\"q\"><label for=\"em\">E-mailadres</label><input type=\"email\" id=\"em\" autocomplete=\"email\" required></div><div class=\"q\"><label for=\"pw\">Wachtwoord</label><input type=\"password\" id=\"pw\" autocomplete=\"current-password\" required></div><button class=\"btn\" type=\"submit\" style=\"width:100%\">🔑 Inloggen</button></form><div id=\"lm\" class=\"sst\" style=\"margin:16px 0 0;text-align:center\"></div>';\nreturn;\n}\nvar em=(user.email||\"\").trim().toLowerCase();\nvar sm=STAFF.filter(function(s){return s.email&&s.email.toLowerCase()===em})[0];\nif(!sm){\nb.innerHTML='<div class=\"empty\">❌ Dit account is niet gekoppeld aan een stafflid.<br><br><button class=\"btn sec\" data-lo>🚪 Uitloggen</button></div>';\nreturn;\n}\ntSm=sm;\nb.innerHTML='<div style=\"display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px\"><h2 class=\"st\" style=\"margin:0\">🎫 Tickets · '+esc(sm.name)+'</h2><button class=\"btn sec\" data-lo style=\"min-height:42px\">🚪 Uitloggen</button></div><div id=\"tdash\"><div id=\"tst\" class=\"msg\"></div><div class=\"filters\" id=\"tfl\"></div><div id=\"tks\"><div class=\"empty\">⏳ Tickets laden...</div></div></div>';\nstartTickets();\npaintTickets();\n}\n\nfunction startTickets(){\nif(tU)return;\ntU=FB.listenTickets(function(d){\ntickets=Object.keys(d).map(function(id){return Object.assign({id:id},d[id])}).sort(function(a,b){return tLast(b)-tLast(a)});\npaintTickets();\n},function(er){\nvar s=$(\"#tst\");\nif(s)setMsg(s,\"Tickets laden mislukt: \"+(er.code===\"PERMISSION_DENIED\"?\"Geen toegang. Publiceer de meegeleverde Realtime Database-regels en controleer of je staff-e-mailadres in de regels staat.\":er.message),\"error\");\n});\n}\n\nfunction paintTickets(){\nvar c=$(\"#tks\"),f=$(\"#tfl\");\nif(!c)return;\ndocument.querySelectorAll(\".tr\").forEach(function(x){tDraft[x.dataset.id]=x.value});\nvar n={all:tickets.length,open:0,doing:0,closed:0};\ntickets.forEach(function(t){n[tS(t)]++});\nf.innerHTML=[[\"all\",\"Alle\"],[\"open\",\"Open\"],[\"doing\",\"In behandeling\"],[\"closed\",\"Gesloten\"]].map(function(x){\nreturn '<button type=\"button\" class=\"filter'+(tFilt===x[0]?\" on\":\"\")+'\" data-f=\"'+x[0]+'\">'+x[1]+' ('+n[x[0]]+')</button>';\n}).join(\"\");\nvar vis=tickets.filter(function(t){return tFilt===\"all\"||tS(t)===tFilt});\nif(!vis.length){c.innerHTML='<div class=\"empty\">Geen tickets gevonden.</div>';return}\nc.innerHTML=vis.map(function(t){\nvar s=tS(t),ms=tMsgs(t),lm=ms[ms.length-1],id=esc(t.id);\nvar wait=lm&&lm.role===\"user\"&&s!==\"closed\";\nvar h='<div class=\"tk\"><div class=\"tk-h\" data-x=\"'+id+'\"><div><div class=\"tk-t\">'+esc(t.subject)+'</div><div class=\"tk-m\">'+esc(t.name)+' · '+esc(t.category)+' · '+id+' · '+(t.createdAt?new Date(t.createdAt).toLocaleString(\"nl-NL\"):\"\")+'</div></div><div><span class=\"tag '+TC[s]+'\">'+TL[s]+'</span>'+(wait?'<span class=\"tag\">💬 Wacht op antwoord</span>':'')+'</div></div>';\nif(tExp[t.id]){\nh+=tThread(t)+\n'<textarea class=\"tr\" data-id=\"'+id+'\" placeholder=\"Typ je antwoord...\" maxlength=\"2000\">'+esc(tDraft[t.id]||\"\")+'</textarea>'+\n'<div class=\"acts\"><button type=\"button\" class=\"act a\" data-send=\"1\" data-id=\"'+id+'\">📨 Beantwoorden</button>'+\n(s!==\"doing\"&&s!==\"closed\"?'<button type=\"button\" class=\"act r\" data-st=\"doing\" data-id=\"'+id+'\">⏳ In behandeling</button>':'')+\n(s!==\"closed\"?'<button type=\"button\" class=\"act r\" data-st=\"closed\" data-id=\"'+id+'\">🔒 Sluiten</button>':'<button type=\"button\" class=\"act a\" data-st=\"open\" data-id=\"'+id+'\">🔓 Heropenen</button>')+\n'<button type=\"button\" class=\"act d'+(tArm===t.id?\" armed\":\"\")+'\" data-del=\"1\" data-id=\"'+id+'\">'+(tArm===t.id?\"Zeker weten? Klik nogmaals\":\"🗑 Verwijderen\")+'</button></div>';\n}\nreturn h+'</div>';\n}).join(\"\");\n}\n\n/* EVENTS */\ndocument.addEventListener(\"click\",async function(e){\nvar x=e.target.closest(\"[data-tab],[data-tb],[data-open],[data-look],[data-lo],[data-f],[data-x],[data-send],[data-st],[data-del]\");\nif(!x)return;\nvar id=x.dataset.id;\nif(x.dataset.tab){\ntab=x.dataset.tab;\ndocument.querySelectorAll(\"[data-tab]\").forEach(function(b){b.classList.toggle(\"on\",b.dataset.tab===tab)});\nreturn render();\n}\nif(x.hasAttribute(\"data-tb\"))return render();\nif(x.dataset.open)return tOpen(x.dataset.open);\nif(x.hasAttribute(\"data-look\")){var c=val(\"tcode\").toUpperCase().replace(/\\s/g,\"\");return c&&tOpen(c)}\nif(x.hasAttribute(\"data-lo\"))return FB.logout();\nif(x.dataset.f){tFilt=x.dataset.f;return paintTickets()}\nif(x.dataset.x){tExp[x.dataset.x]=!tExp[x.dataset.x];return paintTickets()}\ntry{\nif(x.hasAttribute(\"data-send\")){\nvar ta=Array.from(document.querySelectorAll(\".tr\")).filter(function(k){return k.dataset.id===id})[0];\nvar tx=ta?ta.value.trim():\"\";\nif(!tx)return;\nvar t=tickets.filter(function(k){return k.id===id})[0];\nawait FB.reply(id,{role:\"staff\",author:tSm.name,text:tx,at:Date.now()});\ntDraft[id]=\"\";ta.value=\"\";\nif(t&&tS(t)===\"open\")await FB.setStatus(id,\"doing\");\ntoast(\"Antwoord verstuurd.\",\"success\");\n}else if(x.dataset.st){\nawait FB.setStatus(id,x.dataset.st);\n}else if(x.hasAttribute(\"data-del\")){\nif(tArm!==id){tArm=id;return paintTickets()}\ntArm=\"\";\nawait FB.delTicket(id);\ntoast(\"Ticket verwijderd.\",\"success\");\n}\n}catch(er){toast(\"Actie mislukt: \"+er.message,\"error\")}\n});\n\ndocument.addEventListener(\"submit\",async function(e){\ne.preventDefault();\nvar i=e.target.id;\nif(i===\"tkForm\")tCreate();\nif(i===\"rf\")tUserReply();\nif(i===\"lf\"){\nvar m=$(\"#lm\");\nm.textContent=\"⏳ Bezig met inloggen...\";\ntry{await FB.login($(\"#em\").value.trim().toLowerCase(),$(\"#pw\").value);m.textContent=\"\"}\ncatch(er){m.textContent=er.code===\"auth/invalid-credential\"?\"❌ E-mailadres of wachtwoord is incorrect.\":er.code===\"auth/too-many-requests\"?\"⚠️ Te veel pogingen. Probeer later opnieuw.\":\"⚠️ Inloggen mislukt.\"}\n}\n});\n\nif(typeof firebase!==\"undefined\")initFirebase();\nelse{window.addEventListener(\"load\",function(){typeof firebase!==\"undefined\"?initFirebase():render()})}\n<\/script>\n\n<script>\n(function(){\nfunction sendHeight(){\nparent.postMessage({type:\"wv-ticket-height\",height:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)}, \"*\");\n}\nnew ResizeObserver(sendHeight).observe(document.documentElement);\nwindow.addEventListener(\"load\",sendHeight);\nsetTimeout(sendHeight,500);\n})();\n<\/script>\n</body>\n</html>";
+
+/* PAGINA-INHOUD */
+var feat=[
+["🎢","Spectaculaire Achtbanen","Beleef spannende achtbanen, van familie-attracties tot extreme ritten."],
+["🏰","Magische Themagebieden","Verken unieke gebieden met eigen verhalen, gebouwen en magie."],
+["🎡","Unieke Attracties","Geniet van shows, minigames en interactieve belevenissen."],
+["🎆","Shows & Events","Regelmatig nieuwe evenementen, activiteiten en speciale momenten."],
+["🎟️","Tickets & Beloningen","Ontdek het park en verdien leuke beloningen."],
+["👥","Community","Speel samen met vrienden en ontmoet andere pretparkfans."]
+];
+
+var wvA=[
+["🎠","Fantasia","Een betoverende attractie vol fantasie en magie in het hart van WonderValleyMC."],
+["🍪","Oma's Koekhuis","Stap binnen bij Oma's Koekhuis en ontdek een gezellige en smakelijke attractie."],
+["🐯","JungleTiger","Ga op avontuur door de jungle en trotseer de spanning van JungleTiger."],
+["🤠","WildWestTour","Reis door het Wilde Westen en beleef een avontuurlijke tour door WonderValleyMC."],
+["🗼","WildWestTowers","Bekijk het Wilde Westen vanuit een heel ander perspectief bij WildWestTowers."],
+["🪄","Magische Broers","Ontdek de magie en het avontuur van de mysterieuze Magische Broers."],
+["💀","Danse Macabre","Een duistere en mysterieuze attractie die momenteel in aanbouw is. Danse Macabre is daarom nog niet beschikbaar voor bezoekers.","🚧 In aanbouw"],
+["🛢️","Chaos Barrels","Een wilde piratenattractie vol draaiingen en chaos. Chaos Barrels is een soort Sirocco, maar dan volledig in piratenstijl."],
+["🏴‍☠️","Stormvloed","Bereid je voor op een enorme stormvloed! Een spectaculaire piratenlanceerachtbaan waarin je met hoge snelheid door het avontuur wordt gelanceerd."]
+];
+
+var gbA=[
+["🎢","Max Und Moritz","Een spectaculaire attractie voor bezoekers die op zoek zijn naar een spannende rit.1"],
+["⛏️","IronMine","Stap in en beleef de spanning van IronMine.1"],
+["🐍","Python","Een echte klassieker voor de avontuurlijke bezoeker.1"],
+["🍌","Fata GamerBana","Ontdek Fata GamerBana in GB's LivePark.1"],
+["🚤","De Vliegende Oak Boat","Deze attractie is momenteel gesloten wegens onderhoud.0"],
+["🦅","Vogel Rock","Vogel Rock is momenteel niet beschikbaar wegens onderhoud.0"]
+];
+
+/* PAGINA'S EN ROUTER */
+var R={
+tickets:{
+t:"gold",
+h:function(){
+return '<section class="sec-pad"><div class="container"><h2 class="h">🎫 WonderValleyMC Tickets</h2><p class="intro">Stel een vraag aan het staffteam, volg je ticket of beheer tickets als stafflid.</p><iframe id="ticketFrame" title="WonderValleyMC tickets" style="display:block;width:100%;height:1500px;border:0;border-radius:25px;background:transparent" loading="lazy"></iframe></div></section>';
+},
+init:function(){
+var frame=$("#ticketFrame");
+if(frame)frame.srcdoc= TICKET_PAGE;
+}
+},
+home:{
+t:"gold",
+h:function(){
+return hero(
+img(L1,"","WonderValleyMC logo")+
+'<h1>Welkom in WonderValleyMC!</h1>'+
+'<p>Het park is geopend! 🎉 Beleef spectaculaire achtbanen, ontdek magische themagebieden en geniet van unieke attracties en onvergetelijke avonturen. Jouw avontuur begint hier!</p>'+
+'<div class="buttons">'+ipBtn+
+'<a class="btn" href="'+DISCORD+'" target="_blank" rel="noopener">💬 Discord</a></div>',true)+
+'<section class="sec-pad"><h2 class="h">🎢 Live Parkstatus</h2><div class="status-box glass" aria-live="polite"><img id="serverIcon" alt="Minecraft servericoon"><div id="serverStatus">⏳ Serverstatus wordt opgehaald...</div><div id="playerCount"></div><div id="serverVersion"></div><div id="serverMotd"></div><div class="note">Wordt automatisch vernieuwd.</div></div></section>'+
+'<section class="sec-pad"><h2 class="h">✨ Ontdek WonderValley</h2><div class="cards">'+
+feat.map(function(f){return '<div class="card glass"><h3>'+f[0]+' '+f[1]+'</h3><p>'+f[2]+'</p></div>'}).join("")+
+'</div></section>'+
+'<section class="sec-pad"><h2 class="h">📰 Laatste Nieuws</h2><div class="news-card glass"><h3>🎉 WonderValleyMC is geopend!</h3><p>Het is zover! WonderValleyMC is officieel geopend! Kom langs en ontdek ons magische Minecraft-pretpark vol spectaculaire achtbanen, unieke attracties, prachtige themagebieden en onvergetelijke avonturen. Nodig je vrienden uit en beleef samen de magie van WonderValleyMC! Houd onze Discord in de gaten voor nieuws, evenementen en speciale activiteiten!</p></div></section>'+
+'<section class="sec-pad join"><h2 class="h">🎠 Het park wacht op jou!</h2><h3>'+SERVER_IP+'</h3>'+ipBtn+'</section>';
+},
+init:initStatus
+},
+
+regels:{
+t:"gold2",
+h:function(){
+return hero('<div class="icon-big">📜</div><h1>Serverregels</h1><p>Om de server voor iedereen veilig, gezellig en plezierig te houden, vragen wij alle spelers zich aan onderstaande regels te houden. Door de server te betreden ga je akkoord met deze regels. Respect voor elkaar staat altijd centraal.</p>')+
+'<div class="rules"><section class="card glass"><h2>Regels voor iedereen</h2><p>De volgende zaken zijn niet toegestaan:</p><ul>'+
+[
+"Spammen in de chat.",
+"Reclame maken voor andere servers, websites of diensten zonder toestemming.",
+"Het opzettelijk verstoren van de spelervaring van andere spelers.",
+"Schelden, discrimineren, beledigen of ander ongepast taalgebruik gebruiken.",
+"Het gebruiken van hacks, cheats, exploits of glitches.",
+"Het kopiëren, downloaden of verspreiden van eigendommen van de server zonder toestemming.",
+"Het delen van persoonlijke gegevens van jezelf of anderen.",
+"Ongepast, storend of respectloos gedrag vertonen.",
+"De server betreden met een ongepaste gebruikersnaam of skin.",
+"De server betreden met een alternatief account (ALT), tenzij hiervoor toestemming is verleend."
+].map(function(x){return '<li>'+x+'</li>'}).join("")+
+'</ul></section><section class="card glass"><h2>Aanvullende regels voor Medewerker en Medewerker+</h2><p>Naast de algemene regels gelden voor Medewerkers en Medewerker+ de volgende aanvullende regels:</p><ul>'+
+[
+"Bezoekers geen toegang geven tot backstage-, onderhouds- of besturingsruimtes zonder toestemming.",
+"De statusfunctie niet onnodig of herhaaldelijk achter elkaar gebruiken.",
+"Een attractie nooit onbeheerd geopend achterlaten.",
+"Attracties niet bedienen voor privédoeleinden.",
+"De attractiepower niet uitschakelen wanneer zich nog bezoekers in de attractie bevinden.",
+"Je niet voordoen als een staflid of een hogere rang dan je daadwerkelijk bezit."
+].map(function(x){return '<li>'+x+'</li>'}).join("")+
+'</ul></section><section class="card glass notice"><h2>Handhaving</h2><p>Het niet naleven van deze regels kan leiden tot een waarschuwing, tijdelijke schorsing of een permanente ban. De staf behoudt zich het recht voor om in situaties die niet expliciet in deze regels zijn beschreven een passende beslissing te nemen wanneer dit nodig is voor de veiligheid, eerlijkheid en het plezier op de server.</p></section></div>';
+}
+},
+
+"media-rank":{
+t:"gold2",
+h:function(){
+return page(wvHead("Informatie over de Media Rank."),
+"Er is nog geen inhoud aangeleverd voor deze pagina. Vervang dit blok door de tekst van de Media Rank.",
+'<section class="grid1">'+card("📺","Media Rank","Binnenkort meer informatie over de Media Rank van WonderValleyMC.",{foot:'<span class="pill soon">🔮 Binnenkort</span>'})+'</section>');
+}
+},
+
+"wv-attracties":{
+t:"gold2",
+h:function(){
+return page(wvHead("Ontdek alle attracties van het magische hoofdpark van WonderValleyMC."),
+"Van spannende avonturen tot betoverende ervaringen: bekijk hieronder de attracties die je in WonderValleyMC kunt beleven.",
+'<section class="grid2">'+wvA.map(function(a){return card(a[0],a[1],a[2],{badge:a[3]})}).join("")+'</section>');
+}
+},
+
+"wv-shows":{
+t:"gold2",
+h:function(){
+return page(wvHead("Beleef de shows van het hoofdpark van WonderValleyMC."),
+"Ontdek de bijzondere shows van WonderValleyMC. Van het spectaculaire openingsmoment tot magische voorstellingen in de theaters van het park.",
+'<section class="grid2">'+
+card("🎆","Het openingsspectacle","Beleef het eenmalige openingsspectacle tijdens de officiële opening van WonderValleyMC.",{foot:'<div class="pill">📅 Eenmalig op 27 september • 📍 Fantasiaplein</div>'})+
+card("🌲🦌","De helden van het bos","Een avontuurlijke voorstelling die te beleven is in het Wonderbostheater.",{foot:'<div class="pill">📍 Wonderbostheater</div>'})+
+card("✨🎭","Magielise","Een magische nieuwe show die binnenkort te zien zal zijn in het WonderTheater.",{foot:'<div class="pill soon">🔮 Binnenkort • 📍 WonderTheater</div>'})+
+'</section>');
+}
+},
+
+"gb-attracties":{
+t:"gray",
+h:function(){
+return page(gbHead("Ontdek de attracties van GB's LivePark in WonderValleyMC."),
+"Bekijk hieronder alle attracties van GB's LivePark. Attracties met een onderhoudsmelding zijn tijdelijk niet beschikbaar.",
+'<section class="grid2">'+gbA.map(function(a){
+var o=a[2].slice(-1)==="1",p=a[2].slice(0,-1);
+return card(a[0],a[1],p,{foot:o?'<span class="avail open">🟢 Beschikbaar</span>':'<span class="avail mt">🟠 In onderhoud</span>'});
+}).join("")+'</section>');
+}
+},
+
+"gb-shows":{
+t:"blue",
+h:function(){
+return page(gbHead("Beleef de spectaculaire shows van GB's LivePark in WonderValleyMC."),
+"Van spetterend spektakel tot bijzondere parkervaringen: ontdek de shows die je kunt beleven in GB's LivePark.",
+'<section class="grid1">'+card("💦🎆","The EZ Waterspectacle","The EZ Waterspectacle is de watershow van GB's LivePark. Voor deze show moet je naar het WaterFestival Area. Geniet daar van een spectaculair waterspektakel midden in het park.",{foot:'<div class="pill">📍 Te vinden op het WaterFestival Area</div>'})+'</section>');
+},
+foot:"© 2026 GB's LivePark • Onderdeel van WonderValleyMC"
+},
+
+solliciteren:{
+t:"gold",
+h:function(){
+return hero(img(L1,"sm","WonderValleyMC logo")+
+'<h1>✨ Staff Sollicitatie</h1><p>Wil jij meebouwen aan het magische Minecraft pretpark van WonderValleyMC? Kies je functie en vul de sollicitatie in.</p>')+
+'<div class="fcard glass"><div id="appStatus" class="msg"></div><div class="progress"><div class="ps on"></div><div class="ps"></div><div class="ps"></div></div><form id="appForm" novalidate>'+
+'<section id="s1"><h2 class="st">Stap 1 — Over jou</h2><p class="sst">Vertel wie je bent, welke functie(s) je zoekt en waarom je erbij wilt.</p>'+
+'<div class="q"><label for="name">Minecraft naam *</label><input id="name" autocomplete="off" maxlength="30"><div class="err">Vul je Minecraft naam in.</div></div>'+
+'<div class="q"><label for="age">Leeftijd *</label><input id="age" type="number" min="10" max="99"><div class="err">Vul je leeftijd in (10 t/m 99).</div></div>'+
+'<div class="q" id="roleQ"><label>Voor welke functie(s) solliciteer je? * <span class="hint">Je mag er meerdere kiezen.</span></label><div class="roles" id="roleBox">'+
+Object.keys(ROLES).map(function(k){var r=ROLES[k];return '<label class="ro" data-role="'+k+'"><input type="checkbox" value="'+k+'"><div class="rt">'+r.emoji+' '+r.label+'</div><div class="rd">'+r.desc+'</div></label>'}).join("")+
+'</div><div class="err">Kies minstens één functie.</div></div>'+
+GI.map(function(q,i){return qh("gi"+(i+1),i+1,q)}).join("")+
+'<div class="btns"><button type="button" class="btn" data-act="n1">Volgende →</button></div></section>'+
+'<section id="s2" class="hidden"><h2 class="st" id="roleTitle">Stap 2 — Jouw functies</h2><p class="sst">Per gekozen functie krijg je een eigen set vragen. Wees zo concreet mogelijk.</p><div id="roleQs"></div><div class="btns"><button type="button" class="btn sec" data-act="b1">← Terug</button><button type="button" class="btn" data-act="n2">Volgende →</button></div></section>'+
+'<section id="s3" class="hidden"><h2 class="st">Stap 3 — Staffvragen</h2><p class="sst">Neem rustig de tijd en geef zo duidelijk mogelijk antwoord.</p>'+
+GS.map(function(q,i){return qh("gs"+(i+1),i+1,q)}).join("")+
+'<div class="btns"><button type="button" class="btn sec" data-act="b2">← Terug</button><button type="submit" class="btn" id="subBtn">🎟️ Sollicitatie versturen</button></div></section></form></div>';
+},
+init:initApply
+},
+
+stafflogin:{
+t:"gold",
+h:function(){
+return hero('<img class="hero-logo sm" style="border-radius:25px" src="'+L1+'" alt="WonderValleyMC" onerror="this.style.display=\'none\'"><h1>✨ Stafflogin</h1><p>Een speciale loginpage voor Staffleden.</p>')+
+'<div id="staffArea"></div>';
+},
+init:initStaff
+}
+};
+
+function qh(id,n,t){
+return '<div class="q"><label for="'+id+'">'+n+'. '+esc(t)+'</label><textarea id="'+id+'"></textarea><div class="err">Beantwoord deze vraag.</div></div>';
+}
+
+/* ROUTER */
+var stopTimers=[];
+function route(target){
+var h=target || (location.hash||"#home").slice(1);
+if(!R[h])h="home";
+stopTimers.forEach(clearInterval);
+stopTimers=[];
+document.body.dataset.t=R[h].t;
+$("#app").innerHTML=R[h].h();
+$("#fp").textContent=R[h].foot||"© 2026 WonderValleyMC • Alle rechten voorbehouden.";
+document.querySelectorAll("[data-r]").forEach(function(a){
+a.classList.toggle("on",a.dataset.r===h);
+});
+$("#menu").classList.remove("show");
+document.querySelectorAll(".menu>li").forEach(function(li){li.classList.remove("open")});
+window.scrollTo(0,0);
+if(R[h].init)R[h].init();
+}
+
+/* Navigatie expliciet afhandelen: werkt betrouwbaarder in Google Sites-iframes. */
+$("#menu").addEventListener("click",function(e){
+var link=e.target.closest("a[data-r]");
+if(!link)return;
+e.preventDefault();
+
+var target=link.dataset.r;
+if(!R[target])return;
+
+/* Eerst de pagina tonen. Google Sites kan history.pushState in een
+   ingesloten frame blokkeren; location.hash is hier robuuster. */
+route(target);
+if(location.hash!=="#"+target){
+location.hash=target;
+}
+});
+
+/* Browser terug/vooruit blijft werken. */
+addEventListener("popstate",function(){
+route((location.hash||"#home").slice(1));
+});
+addEventListener("hashchange",function(){
+route((location.hash||"#home").slice(1));
+});
+
+$("#burger").onclick=function(){
+$("#menu").classList.toggle("show");
+};
+
+document.querySelectorAll(".menu .t").forEach(function(b){
+b.onclick=function(){b.parentNode.classList.toggle("open")};
+});
+
+document.addEventListener("click",function(e){
+var b=e.target.closest("[data-copy]");
+if(b)copyIP();
+});
 
 
+/* Hoogte van de ingebedde ticketpagina automatisch aanpassen. */
+window.addEventListener("message",function(e){
+if(e.data&&e.data.type==="wv-ticket-height"){
+var f=$("#ticketFrame");
+if(f)f.style.height=Math.max(900,Math.min(5000,Number(e.data.height)||1500))+"px";
+}
+});
+
+/* SERVERSTATUS */
+function initStatus(){
+updateStatus();
+stopTimers.push(setInterval(updateStatus,60000));
+}
+
+async function updateStatus(){
+var s=$("#serverStatus");
+if(!s)return;
+var p=$("#playerCount"),v=$("#serverVersion"),m=$("#serverMotd"),ic=$("#serverIcon");
+
+try{
+var r=await fetch("https://api.mcsrvstat.us/3/"+encodeURIComponent(SERVER_IP),{cache:"no-store"});
+if(!r.ok)throw new Error("Status niet beschikbaar");
+var d=await r.json();
+
+if(d.online){
+s.innerHTML="🟢 <strong>Park geopend</strong>";
+p.textContent="🎢 Bezoekers in het park: "+Number(d.players&&d.players.online||0)+"/"+Number(d.players&&d.players.max||0);
+v.textContent="📦 Minecraft versie: "+(d.version||(d.protocol&&d.protocol.name)||"Onbekend");
+if(d.motd&&d.motd.clean&&d.motd.clean.length)m.textContent="💬 "+d.motd.clean.join(" ");
+if(d.icon){ic.src=d.icon;ic.style.display="block"}
+}else{
+s.innerHTML="🔴 <strong>Park gesloten</strong>";
+p.textContent="De Minecraft-server is momenteel offline.";
+v.textContent="";
+m.textContent="";
+ic.style.display="none";
+}
+}catch(e){
+s.textContent="⚠️ Serverstatus tijdelijk niet beschikbaar";
+p.textContent="Controleer later opnieuw.";
+}
+}
+
+async function copyIP(){
+try{
+if(navigator.clipboard&&window.isSecureContext){
+await navigator.clipboard.writeText(SERVER_IP);
+}else{
+var i=document.createElement("textarea");
+i.value=SERVER_IP;
+i.style.position="fixed";
+i.style.opacity="0";
+document.body.appendChild(i);
+i.select();
+document.execCommand("copy");
+i.remove();
+}
+document.querySelectorAll("[data-copy]").forEach(function(b){
+var o=b.innerHTML;
+b.innerHTML="✅ Gekopieerd!";
+setTimeout(function(){b.innerHTML=o},1800);
+});
+}catch(e){
+toast("Kopiëren is niet gelukt. Server IP: "+SERVER_IP,"error");
+}
+}
+
+/* SOLLICITATIES */
+var sel=[];
+
+function setMsg(el,t,k){
+el.textContent=t;
+el.className="msg show "+k;
+}
+
+function clr(el){
+el.textContent="";
+el.className="msg";
+}
+
+function val(id){
+return document.getElementById(id).value.trim();
+}
+
+function rng(p,n){
+var a=[];
+for(var i=1;i<=n;i++)a.push(p+i);
+return a;
+}
+
+function validate(ids){
+var ok=true;
+ids.forEach(function(id){
+var el=document.getElementById(id);
+var q=el.closest(".q");
+var g=!!el.value.trim();
+if(id==="age"&&g){
+var n=Number(el.value);
+g=n>=10&&n<=99;
+}
+q.classList.toggle("bad",!g);
+if(!g)ok=false;
+});
+return ok;
+}
+
+function step(n){
+["s1","s2","s3"].forEach(function(s,i){
+$("#"+s).classList.toggle("hidden",i+1!==n);
+});
+document.querySelectorAll(".ps").forEach(function(p,i){
+p.classList.toggle("on",i<n);
+});
+clr($("#appStatus"));
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function stepErr(){
+setMsg($("#appStatus"),"Vul alle verplichte velden in voordat je verdergaat.","error");
+var f=document.querySelector(".q.bad");
+if(f)f.scrollIntoView({behavior:"smooth",block:"center"});
+}
+
+function renderRoleQs(){
+var c=$("#roleQs"),old={};
+c.querySelectorAll("textarea").forEach(function(t){old[t.id]=t.value});
+c.innerHTML=sel.map(function(k){
+var r=ROLES[k];
+return '<h3 class="rh">'+r.emoji+' '+r.label+'</h3>'+
+r.q.map(function(q,i){return qh("r_"+k+"_"+(i+1),i+1,q)}).join("");
+}).join("");
+c.querySelectorAll("textarea").forEach(function(t){
+if(old[t.id])t.value=old[t.id];
+});
+$("#roleTitle").textContent=sel.length?
+"Stap 2 — Vragen voor "+sel.map(function(k){return ROLES[k].label}).join(", "):
+"Stap 2 — Jouw functies";
+}
+
+function initApply(){
+sel=[];
+
+$("#roleBox").addEventListener("change",function(){
+var ch=Array.from(document.querySelectorAll("#roleBox input:checked")).map(function(i){return i.value});
+sel=Object.keys(ROLES).filter(function(k){return ch.indexOf(k)>-1});
+document.querySelectorAll(".ro").forEach(function(el){
+el.classList.toggle("sel",sel.indexOf(el.dataset.role)>-1);
+});
+if(sel.length)$("#roleQ").classList.remove("bad");
+renderRoleQs();
+});
+
+$("#appForm").addEventListener("click",function(e){
+var a=e.target.dataset.act;
+if(!a)return;
+
+if(a==="n1"){
+var f=validate(["name","age"].concat(rng("gi",GI.length)));
+var r=sel.length>0;
+$("#roleQ").classList.toggle("bad",!r);
+if(!f||!r)return stepErr();
+step(2);
+}
+
+if(a==="b1")step(1);
+
+if(a==="n2"){
+if(!validate(Array.from(document.querySelectorAll("#roleQs textarea")).map(function(t){return t.id})))return stepErr();
+step(3);
+}
+
+if(a==="b2")step(2);
+});
+
+$("#appForm").addEventListener("submit",async function(e){
+e.preventDefault();
+var st=$("#appStatus");
+
+if(!validate(rng("gs",GS.length)))return stepErr();
+
+if(!window.FB){
+setMsg(st,"Firebase kon niet worden geladen. Controleer je internetverbinding.","error");
+return;
+}
+
+var b=$("#subBtn");
+b.disabled=true;
+b.textContent="Versturen...";
+clr(st);
+
+var ans=[];
+
+GI.forEach(function(q,i){
+ans.push({section:"Over jou",question:q,answer:val("gi"+(i+1))});
+});
+
+sel.forEach(function(k){
+ROLES[k].q.forEach(function(q,i){
+ans.push({section:"Vragen voor "+ROLES[k].label,question:q,answer:val("r_"+k+"_"+(i+1))});
+});
+});
+
+GS.forEach(function(q,i){
+ans.push({section:"Staffvragen",question:q,answer:val("gs"+(i+1))});
+});
+
+try{
+await Promise.race([
+FB.submit({
+name:val("name"),
+age:val("age"),
+roles:sel.slice(),
+roleLabels:sel.map(function(k){return ROLES[k].label}),
+answers:ans,
+status:"pending",
+createdAt:Date.now()
+}),
+new Promise(function(_,reject){
+setTimeout(function(){reject(new Error("timeout"))},15000);
+})
+]);
+
+$("#appForm").reset();
+sel=[];
+document.querySelectorAll(".ro").forEach(function(x){x.classList.remove("sel")});
+$("#roleQs").innerHTML="";
+step(1);
+
+setMsg(st,"Je sollicitatie is succesvol verstuurd! Bedankt voor je sollicitatie bij WonderValleyMC. 🎢","success");
+
+}catch(er){
+var m=er.message==="timeout"?
+"De database reageert niet. Controleer of de Realtime Database is aangemaakt en of de databaseURL klopt. Probeer het daarna opnieuw.":
+/permission/i.test(String(er.code||er.message))?
+"Firebase weigert het opslaan (PERMISSION_DENIED). Controleer de Realtime Database-regels.":
+"De sollicitatie kon niet worden opgeslagen. Firebase fout: "+er.message;
+
+setMsg(st,m,"error");
+st.scrollIntoView({behavior:"smooth",block:"center"});
+}finally{
+b.disabled=false;
+b.textContent="🎟️ Sollicitatie versturen";
+}
+});
+}
+
+/* STAFFLOGIN EN DASHBOARD */
+var user=null,apps=[],filt="all",unsub=null;
+var LAB={pending:"In afwachting",accepted:"Geaccepteerd",rejected:"Afgewezen"};
+
+function toast(m,k){
+var t=$("#toast");
+setMsg(t,m,k);
+clearTimeout(t._t);
+t._t=setTimeout(function(){t.className="msg"},7000);
+}
+
+function stOf(a){
+return a.status==="accepted"||a.status==="rejected"?a.status:"pending";
+}
+
+function initStaff(){
+var box=$("#staffArea");
+if(!box)return;
+
+if(!window.FB){
+box.innerHTML='<div class="login glass"><h2>🔐 Staff Login</h2><div class="lmsg">Firebase wordt geladen of is niet bereikbaar. Controleer je internetverbinding.</div></div>';
+return;
+}
+
+if(!user){
+box.innerHTML='<div class="login glass"><h2>🔐 Staff Login</h2><form id="lf"><div class="ig"><label for="em">E-mailadres</label><input type="email" id="em" placeholder="jouw@email.nl" required autocomplete="email"></div><div class="ig"><label for="pw">Wachtwoord</label><input type="password" id="pw" placeholder="Wachtwoord" required autocomplete="current-password"></div><button class="btn" style="width:100%" type="submit">🔑 Inloggen</button></form><div class="lmsg" id="lm" aria-live="polite"></div></div>';
+
+$("#lf").addEventListener("submit",async function(e){
+e.preventDefault();
+var m=$("#lm");
+m.textContent="⏳ Bezig met inloggen...";
+try{
+await FB.login($("#em").value.trim().toLowerCase(),$("#pw").value);
+m.textContent="";
+}catch(er){
+m.textContent=er.code==="auth/invalid-credential"?
+"❌ E-mailadres of wachtwoord is incorrect.":
+er.code==="auth/too-many-requests"?
+"⚠️ Te veel pogingen. Probeer later opnieuw.":
+"⚠️ Inloggen mislukt.";
+}
+});
+return;
+}
+
+var em=(user.email||"").trim().toLowerCase();
+var sm=STAFF.filter(function(s){return s.email&&s.email.toLowerCase()===em})[0];
+
+var out='<div style="text-align:center;margin-bottom:30px"><h2 class="h" style="margin-bottom:10px">👤 Jouw Staffprofiel</h2><p style="color:#aaa">'+
+(sm?"Welkom terug, "+esc(sm.name)+"!":"⚠️ Dit account is niet gekoppeld aan een staffprofiel.")+
+'</p><button class="btn sec" id="lo" style="margin-top:20px;min-height:44px">🚪 Uitloggen</button></div>';
+
+if(!sm){
+out+='<div class="empty" style="max-width:600px;margin:auto">❌ Geen staffprofiel gevonden.<br><br>Dit Firebase-account is niet gekoppeld aan een WonderValleyMC stafflid.</div>';
+}else{
+out+='<div class="staffcard glass">'+
+(sm.image?'<img class="simg" src="'+esc(sm.image)+'" alt="'+esc(sm.name)+'" onerror="this.style.display=\'none\'">':'')+
+'<h3 class="sname">'+esc(sm.name)+'</h3><div class="srole">'+esc(sm.role)+'</div><p class="sdesc">'+esc(sm.description)+'</p>'+
+'<a class="btn" style="margin-top:22px" href="https://sites.google.com/view/wondervalleymc-official/staff/audio_578752647" target="_blank" rel="noopener">🔊 Staff Audio</a></div>'+
+'<div class="dash"><h2>📋 Sollicitaties</h2><p>Alle binnengekomen WonderValleyMC sollicitaties.</p><div id="dst" class="msg"></div><div class="filters" id="flt"></div><div id="apps"><div class="empty">⏳ Sollicitaties laden...</div></div></div>';
+}
+
+box.innerHTML=out;
+
+$("#lo").onclick=function(){FB.logout()};
+
+if(sm){
+startDash();
+paintApps();
+}
+}
+
+function startDash(){
+if(unsub)return;
+
+unsub=FB.listen(function(d){
+apps=Object.keys(d).map(function(id){
+return Object.assign({id:id},d[id]);
+}).sort(function(a,b){
+return(b.createdAt||0)-(a.createdAt||0);
+});
+paintApps();
+},function(er){
+var s=$("#dst");
+if(s)setMsg(s,"De sollicitaties konden niet worden geladen: "+er.message,"error");
+});
+}
+
+function paintApps(){
+var c=$("#apps"),f=$("#flt");
+if(!c)return;
+
+c.innerHTML="";
+f.innerHTML="";
+
+if(!apps.length){
+c.innerHTML='<div class="empty">Er zijn nog geen sollicitaties.</div>';
+return;
+}
+
+var n={all:apps.length,pending:0,accepted:0,rejected:0};
+apps.forEach(function(a){n[stOf(a)]++});
+
+[["all","Alle"],["pending","In afwachting"],["accepted","Geaccepteerd"],["rejected","Afgewezen"]].forEach(function(x){
+var b=document.createElement("button");
+b.type="button";
+b.className="filter"+(filt===x[0]?" on":"");
+b.textContent=x[1]+" ("+n[x[0]]+")";
+b.onclick=function(){filt=x[0];paintApps()};
+f.appendChild(b);
+});
+
+var vis=apps.filter(function(a){return filt==="all"||stOf(a)===filt});
+
+if(!vis.length){
+c.innerHTML='<div class="empty">Geen sollicitaties in deze categorie.</div>';
+return;
+}
+
+vis.forEach(function(a){
+var s=stOf(a),w=document.createElement("div");
+w.className="app";
+
+var labels=Array.isArray(a.roleLabels)?a.roleLabels:[];
+var last="",ah="";
+
+(Array.isArray(a.answers)?a.answers:Object.values(a.answers||{})).forEach(function(x){
+if(x.section!==last){
+last=x.section;
+ah+='<div class="as">'+esc(x.section)+'</div>';
+}
+ah+='<div class="ans"><div class="aq">'+esc(x.question)+'</div><div class="at">'+esc(x.answer)+'</div></div>';
+});
+
+w.innerHTML='<div class="ah"><div><div class="an">'+esc(a.name||"Onbekend")+'</div><div>'+
+(labels.length?labels.map(function(l){return '<span class="tag">'+esc(l)+'</span>'}).join(""):'<span class="tag">Geen functie</span>')+
+'<span class="tag '+s+'">'+LAB[s]+'</span></div><div class="ad">Leeftijd: '+esc(a.age||"-")+' · '+esc(a.createdAt?new Date(a.createdAt).toLocaleString("nl-NL"):"Onbekende datum")+'</div></div><div class="acts"></div></div>'+ah;
+
+var acts=w.querySelector(".acts");
+
+if(s==="accepted"){
+acts.innerHTML='<span style="color:#8ff0a0;font-size:13px;font-weight:800">🔒 Geaccepteerd — kan niet meer worden verwijderd</span>';
+c.appendChild(w);
+return;
+}
+
+var bs=[],tm;
+
+function reset(){
+clearTimeout(tm);
+bs.forEach(function(b){
+b.el.disabled=false;
+b.el.classList.remove("armed");
+b.el.textContent=b.l;
+});
+}
+
+function add(l,cls,run,ok){
+var el=document.createElement("button");
+el.type="button";
+el.className="act "+cls;
+el.textContent=l;
+bs.push({el:el,l:l});
+
+el.onclick=async function(){
+if(!el.classList.contains("armed")){
+reset();
+el.classList.add("armed");
+el.textContent="Zeker weten? Klik nogmaals";
+tm=setTimeout(reset,6000);
+return;
+}
+
+clearTimeout(tm);
+bs.forEach(function(b){b.el.disabled=true});
+el.textContent="Bezig...";
+
+try{
+await run();
+toast(ok,"success");
+}catch(er){
+reset();
+toast("Actie mislukt: "+er.message,"error");
+}
+};
+
+acts.appendChild(el);
+}
+
+add("✓ Accepteren","a",function(){return FB.setStatus(a.id,"accepted")},"Sollicitatie geaccepteerd.");
+
+if(s!=="rejected"){
+add("✕ Afwijzen","r",function(){return FB.setStatus(a.id,"rejected")},"Sollicitatie afgewezen.");
+}
+
+add("🗑 Verwijderen","d",function(){return FB.del(a.id)},"Sollicitatie verwijderd.");
+
+c.appendChild(w);
+});
+}
+
+function authChanged(u){
+user=u;
+
+if(!u&&unsub){
+unsub();
+unsub=null;
+apps=[];
+}
+
+if((location.hash||"").slice(1)==="stafflogin")initStaff();
+}
+
+function hookFB(){
+if(window.FB)FB.onAuth(authChanged);
+}
+
+/* FIREBASE INITIALISATIE */
+function initFirebase(){
+try{
+if(typeof firebase==="undefined"){
+throw new Error("Firebase SDK kon niet worden geladen.");
+}
+
+if(!firebase.apps.length){
+firebase.initializeApp({
+apiKey:"AIzaSyBPQPuusDh6eI7swxXyEHlCgVP_KQI9ZsU",
+authDomain:"wondervalleymc.firebaseapp.com",
+databaseURL:"https://wondervalleymc-default-rtdb.europe-west1.firebasedatabase.app",
+projectId:"wondervalleymc",
+storageBucket:"wondervalleymc.firebasestorage.app",
+messagingSenderId:"177525506386",
+appId:"1:177525506386:web:4439f50134e8b64a06ba8b",
+measurementId:"G-EPJ05LC81M"
+});
+}
+
+var auth=firebase.auth();
+var db=firebase.database();
+var applications=db.ref("staffApplications");
+
+window.FB={
+login:function(email,password){
+return auth.signInWithEmailAndPassword(email,password);
+},
+
+logout:function(){
+return auth.signOut();
+},
+
+onAuth:function(callback){
+return auth.onAuthStateChanged(callback);
+},
+
+listen:function(success,error){
+applications.on("value",function(snapshot){
+success(snapshot.val()||{});
+},error);
+
+return function(){
+applications.off("value");
+};
+},
+
+setStatus:function(id,status){
+return db.ref("staffApplications/"+id).update({
+status:status,
+reviewedAt:Date.now()
+});
+},
+
+del:function(id){
+return db.ref("staffApplications/"+id).remove();
+},
+
+submit:function(data){
+return applications.push().set(data);
+}
+};
+
+window.dispatchEvent(new Event("fbready"));
+
+}catch(error){
+console.error("Firebase initialisatie mislukt:",error);
+window.dispatchEvent(new Event("fberror"));
+}
+}
+
+/* START */
+addEventListener("fbready",function(){
+hookFB();
+if((location.hash||"").slice(1)==="stafflogin")initStaff();
+});
+
+addEventListener("fberror",function(){
+console.error("De Firebase-verbinding is niet beschikbaar.");
+});
+
+route();
+
+/* Firebase SDK is extern geladen. */
+if(typeof firebase!=="undefined"){
+initFirebase();
+}else{
+window.addEventListener("load",initFirebase);
+}
+</script>
 </body>
-
-
 </html>
